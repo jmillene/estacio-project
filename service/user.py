@@ -1,12 +1,12 @@
 from connection.connection import connection
 
-def create_user(name, email):
-    conn = connection
+def create_user(name, email,password):
+    conn = connection()  # Obtém a conexão do banco de dados
     cursor = conn.cursor()
     
     try:
         # Executa o comando SQL para inserir o usuário
-        cursor.execute("INSERT INTO user (name, email) VALUES (%s, %s)", (name, email))
+        cursor.execute("INSERT INTO users (name, email, password) VALUES (%s, %s, %s)", (name, email, password))
         
         # Confirma a transação
         conn.commit()

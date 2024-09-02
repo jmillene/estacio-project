@@ -9,9 +9,8 @@ def connection():
             port="5432",
             database="estacio_project"
         )
-        cursor = conn.cursor()
         print("Conexão com PostgreSQL realizada com sucesso!")
-        cursor.close()
-        conn.close()
+        return conn  # Retorna a conexão para uso posterior
     except Exception as error:
         print(f"Erro ao conectar ao PostgreSQL: {error}")
+        raise  # Re-raise o erro para que possa ser tratado onde a função é chamada
