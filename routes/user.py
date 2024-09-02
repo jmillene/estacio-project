@@ -1,10 +1,8 @@
-from . import app  # Importa o `app` do módulo `app`
-from controller.user import create_user
+from flask import Blueprint
+from controller.user import add_user
 
-@app.route('/')
-def hello():
-    return 'Hello, World!'
+user_bp = Blueprint('user', __name__)
 
-@app.route('/createuser', methods=['POST'])
-def add_user():
-    return create_user()
+@user_bp.route('/create', methods=['POST'])
+def create_user():
+    return add_user()

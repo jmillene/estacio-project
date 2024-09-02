@@ -1,18 +1,18 @@
-# Usa uma imagem Python oficial
+# Usa uma imagem base Python
 FROM python:3.9-slim
 
-# Define o diretório de trabalho no contêiner
+# Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
 # Copia o arquivo requirements.txt e instala as dependências
-COPY requirements.txt requirements.txt
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Instala as dependências, incluindo o psycopg2 e Flask
-RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install psycopg2-binary flask
-
-# Copia todo o código fonte para o contêiner
+# Copia todo o código fonte para o diretório de trabalho
 COPY . .
 
-# Executa o aplicativo
-CMD ["python", "app/app.py"]
+# Define a variável de ambiente PYTHONPATH
+ENV PYTHONPATH=/app
+
+# Comando para iniciar a aplicação
+CMD ["python", "app/server.py"]
