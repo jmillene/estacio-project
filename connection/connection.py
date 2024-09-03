@@ -6,11 +6,11 @@ def connection():
     load_dotenv()
     try:
         conn = psycopg2.connect(
-            user=os.getenv("DB_USER"),
-            password=os.getenv("DB_PASSWORD"),
-            host=os.getenv("DB_HOST"),
-            port=os.getenv("DB_PORT"),
-            database=os.getenv("DB_NAME")
+            user=os.getenv("DATABASE_USER"),
+            password=os.getenv("DATABASE_PASSWORD"),
+            host=os.getenv("DATABASE_HOST"),
+            port=os.getenv("DATABASE_PORT"),
+            database=os.getenv("DATABASE_NAME")
         )
         print("Conexão com PostgreSQL realizada com sucesso!")
         return conn

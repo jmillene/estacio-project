@@ -1,9 +1,4 @@
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from connection.connection import connection
-
 
 def list_users(name=None, email=None):
     conn = connection()
@@ -48,4 +43,3 @@ def list_users(name=None, email=None):
     finally:
         cursor.close()
         conn.close()
-

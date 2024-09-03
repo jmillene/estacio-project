@@ -1,8 +1,8 @@
 from flask import Flask
-from routes.create_users import user_bp
-from routes.list_users import user_bp
+from routes.create_users import create_user_bp
+from routes.list_users import list_users_bp
+from routes.update_users import update_user_bp
 from dotenv import load_dotenv
-import os
 
 def create_app():
     # Carrega variáveis do arquivo .env
@@ -10,7 +10,9 @@ def create_app():
     
     app = Flask(__name__)
 
-    # Registra o blueprint para as rotas de usuário
-    app.register_blueprint(user_bp, url_prefix='/user')
+    # Registra os blueprints
+    app.register_blueprint(create_user_bp, url_prefix='/user')
+    app.register_blueprint(list_users_bp, url_prefix='/user')
+    app.register_blueprint(update_user_bp, url_prefix='/user')
 
     return app

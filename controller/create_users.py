@@ -15,4 +15,3 @@ def add_user():
         return jsonify({"message": "Usuário criado com sucesso!"}), 201
     except Exception as e:
         return jsonify({"message": str(e)}), 500
-
