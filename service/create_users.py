@@ -1,6 +1,6 @@
 from connection.connection import connection
 
-def create_user(name, email,password):
+def create_users(name, email,password):
     conn = connection()  # Obtém a conexão do banco de dados
     cursor = conn.cursor()
     

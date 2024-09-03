@@ -1,5 +1,6 @@
 from flask import Flask
-from routes.user import user_bp
+from routes.create_users import user_bp
+from routes.list_users import user_bp
 from dotenv import load_dotenv
 import os
 
