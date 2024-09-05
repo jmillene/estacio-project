@@ -1,10 +1,10 @@
 from connection.connection import connection
 
-def delete_user(user_id):
+def delete_product(product_id):
     conn = connection()
     try:
         cursor = conn.cursor()
-        cursor.execute("DELETE FROM users WHERE id = %s", (user_id,))
+        cursor.execute("DELETE FROM products WHERE id = %s", (product_id))
         conn.commit()
         
         if cursor.rowcount > 0:
@@ -12,7 +12,7 @@ def delete_user(user_id):
         else:
             return False
     except Exception as e:
-        print(f"Erro ao deletar usuário: {e}")  # Log de depuração
+        print(f"Erro ao deletar produto: {e}")  # Log de depuração
         conn.rollback()
         raise
     finally:

@@ -15,5 +15,5 @@ def update_user_endpoint(user_id):
         result = update_user(user_id, name, email, password)
         return jsonify(result), 200
     except Exception as e:
-        print(f"Error updating user: {e}")  # Log de depuração
+        print(f"Erro ao atualizar usuário: {e}")  # Log de depuração
         return jsonify({"message": str(e)}), 500
