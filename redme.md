@@ -7,26 +7,37 @@ Este projeto foi desenvolvido para criar uma aplicação de e-commerce com funci
 O objetivo deste projeto é criar um sistema de backend para um e-commerce, que possa gerir de forma eficaz as operações básicas, como criação e gerenciamento de usuários, produtos e pedidos. A solução visa fornecer uma base sólida para um sistema de e-commerce, permitindo operações CRUD essenciais e fácil integração com outras funcionalidades no futuro.
 
 ## 3. Estrutura do Projeto
-O projeto está estruturado em quatro principais classes de modelo:
 
-- **User**: Representa os usuários do sistema. Um usuário pode realizar pedidos.
-- **Product**: Representa os produtos disponíveis no e-commerce. Contém informações como nome, descrição, preço e quantidade em estoque.
-- **Order**: Representa um pedido feito por um usuário. Um pedido contém múltiplos itens.
-- **OrderItem**: Representa os itens dentro de um pedido, associando produtos e suas quantidades a um pedido específico.
+O CRUD foi implementado com base no Flask e em conexões com o banco de dados PostgreSQL usando SQL padrão.
 
-## 4. Criação do Banco de Dados
-O banco de dados é criado utilizando o SQLAlchemy:
+### Rotas de Ordens
 
-```python
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+- **POST** `/orders`: Cria uma nova ordem.
+- **GET** `/orders/<order_id>`: Retorna uma ordem pelo seu ID.
+- **PUT** `/orders/<order_id>`: Atualiza o status da ordem.
+- **DELETE** `/orders/<order_id>`: Exclui uma ordem.
 
-engine = create_engine('postgresql://user:password@localhost/mydatabase')
-Base.metadata.create_all(engine)
-Session = sessionmaker(bind=engine)
-session = Session()
+### Rotas de Itens de Ordem
 
-```
+- **POST** `/orders/<order_id>/items`: Adiciona um item à ordem.
+- **GET** `/orders/<order_id>/items`: Lista os itens da ordem.
+- **DELETE** `/orders/<order_id>/items/<item_id>`: Exclui um item da ordem.
+
+## 4. Banco de Dados
+
+O banco de dados utilizado é o PostgreSQL, com duas tabelas principais para gerenciar as ordens e os itens das ordens:
+
+### Tabela `orders`
+- `id`: Chave primária da ordem.
+- `user_id`: ID do usuário que fez a ordem.
+- `status`: Status da ordem (ex: pending, shipped).
+- `created_at`: Data de criação da ordem.
+
+### Tabela `order_items`
+- `id`: Chave primária do item da ordem.
+- `order_id`: ID da ordem associada.
+- `product_id`: ID do produto adicionado à ordem.
+- `quantity`: Quantidade do produto na ordem.
 
 ## 5. CRUD do Usuário
 Foi implementado um CRUD básico para a classe User, permitindo criar, ler, atualizar e deletar usuários. O CRUD inclui:

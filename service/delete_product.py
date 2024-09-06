@@ -8,9 +8,9 @@ def delete_product(product_id):
         conn.commit()
         
         if cursor.rowcount > 0:
-            return {"message": "Product deleted successfully"}
+            return {"message": "Produto deletado com sucesso"}
         else:
-            return {"message": "Product not found"}
+            return {"message": "Produto não encontrado"}
     
     except Exception as e:
         print(f"Erro ao deletar produto: {e}")  # Log de depuração

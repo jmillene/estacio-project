@@ -14,8 +14,8 @@ def update_user(user_id, name, email, password):
             )
             conn.commit()
             if cursor.rowcount == 0:
-                return {"message": "User not found."}
-            return {"message": "User updated successfully"}
+                return {"message": "Usuário não encontrado."}
+            return {"message": "Usuário atualizado com sucesso"}
     finally:
         conn.close()
 
